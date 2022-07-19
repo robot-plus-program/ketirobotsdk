@@ -8,7 +8,6 @@ Pose2=[-1,0,0,0.735,0,1,0,-0.172,0,0,-1,0.328,0,0,0,1]
 
 if __name__=='__main__':
     ###MoveJ Example used sdk###
-    path(f'{os.getcwd()}/ folder / *.so )
     SetRobotConf(UR10,'192.168.0.77',30003)
     RobotConnect()
     SetVelocity(80)

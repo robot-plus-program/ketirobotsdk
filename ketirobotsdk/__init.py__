@@ -1,2 +1,2 @@
-from . import packagetest
-from .packagetest import *
+from . import ketirobotsdk
+from .ketirobotsdk import *
