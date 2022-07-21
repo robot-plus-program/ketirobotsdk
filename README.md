@@ -108,6 +108,29 @@ pose2= [0, 1, 0 0.2, 0, 0, 1, 0.3, 1, 0, 0, 0.25, 0, 0, 0, 1]
 pose3= [0, 1, 0 0.3, 0, 0, 1, 0.3, 1, 0, 0, 0.25, 0, 0, 0, 1]
 moveb(base,0.05, 3, pose1, pose2, pose3)
 ```
+#### Stop()
+```
+Robot stop immediately
+```
+
+#### [Jnt[6],Mat[16],State]=RobotInfo()
+```
+Jnt : joint position
+Mat : Robot Position 4 by 4 matrix
+State : Robot state(2:Moving , 1: Idel, 0: else)
+
+ex) 
+
+#### 4by4 Matrix 
+ Data=RobotInfo()
+
+print(Data.Mat[0],Data.Mat[1],Data.Mat[2],Data.Mat[3])
+print(Data.Mat[4],Data.Mat[5],Data.Mat[6],Data.Mat[7])
+print(Data.Mat[8],Data.Mat[9],Data.Mat[10],Data.Mat[11])
+print(Data.Mat[12],Data.Mat[13],Data.Mat[14],Data.Mat[15])
+
+
+```
 
 #### SetTCP(TCPOffset)
 ```
@@ -116,3 +139,10 @@ ex)
 TCPOffset = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0.01, 0, 0, 0, 1]
 ```
 
+#### SetVelocity(v)
+```
+Setting Robot Velocity  0 ~ 100 %
+
+v: Robot Velocity(%) default 50%
+
+```
