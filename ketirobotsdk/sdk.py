@@ -20,9 +20,8 @@ connect_state=0
 
 class RxDataInfo(ctypes.Structure):
     _fields_=[("Jnt",ctypes.c_double*6),
-             ("Pos",ctypes.c_double*3),
-             ("Mat",ctypes.c_double*9),
-             ("state",ctypes.c_double)]
+             ("Mat",ctypes.c_double*16),
+             ("State",ctypes.c_double)]
     
 class TCPoff(ctypes.Structure):
     _fields_=[('x',ctypes.c_double),
@@ -99,5 +98,8 @@ def RobotDisconnect():
 def SetVelocity(args):
     module.SetVelocity.argtypes=[ctypes.c_double]
     module.SetVelocity(args)
+    
+def Stop():
+    module.Stop()
     
 
