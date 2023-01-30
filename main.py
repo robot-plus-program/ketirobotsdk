@@ -2,9 +2,10 @@ from ketirobotsdk.sdk import *
 from time import *
 import threading
 
-Pose1=[-1,0,0,0.735,0,1,0,-0.172,0,0,-1,0.178,0,0,0,1]
-Pose2=[-1,0,0,0.735,0,1,0,-0.172,0,0,-1,0.328,0,0,0,1]
+Pose1=[-0.707,0,0,0.85,0,0.707,0,0.245,0,0,-1,0.7,0,0,0,1]
+Pose2=[1,0,0,-0.56,0,0,1,0.15,0,-1,0,0.60,0,0,0,1]
 
+jnt1=[1,2,3,4,5,6]
 #### Thread example
 #### Get Robot Information 
 def thread():
@@ -25,26 +26,33 @@ sub=threading.Thread(target=thread)
 ### Example used sdk###
 if __name__=='__main__':
    
-    ##start Thread ##
-    sub.daemon=True
-    sub.start()
+     ##start Thread ##
+    #sub.daemon=True
+    #sub.start()
     #################
     
-    
-    SetRobotConf(UR10,'192.168.0.77',30003)
+    #SetRobotConf(M1013,'192.168.47.7',1013)
+    SetRobotConf(RB10,'192.168.47.7',1024)
     RobotConnect()
-    SetVelocity(80)
-    movej([0,-1.57,-1.57,-1.57,1.57,0])
-    sleep(5)
-
-    SetVelocity(50)
-    movel(Base,Pose2)
-    sleep(2)
+    while(1):    
+    #   SetVelocity(50)
+      # movel(0,Pose1)
+      ControlBoxDigitalOut(65535)
+      input=ControlBoxDigitalInput()
+      print("%.3f"%(input.DI[0]))
+      sleep(2)
+      movel(0,Pose1)
+      sleep(2)
+      movej(jnt1)
+      sleep(2)
+    # SetVelocity(50)
+    # movel(Base,Pose2)
+    # sleep(2)
    
 
-    SetVelocity(20)
-    movel(Base,Pose1)
-    sleep(5)
+    # SetVelocity(20)
+    # movel(Base,Pose1)
+    # sleep(5)
 
-    RobotDisconnect()
+    # RobotDisconnect()
    

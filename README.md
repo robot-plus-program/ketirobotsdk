@@ -2,8 +2,10 @@
 
 ### Environment
 
+#### UpdataDatae : 
 #### Linux Version : Ubuntu 20.04
 #### Python version : 3.8.10
+
 
 ***
 
@@ -89,6 +91,38 @@ SetRobotConf(UR10, '168.137.0.77', 30003)
 ```
 TCP 통신에 연결/연결 해제
 ```
+#### [Jnt[6],Mat[16],State]=RobotInfo()
+``` python
+Jnt : joint position
+Mat : Robot Position 4 by 4 matrix
+State : Robot state(2:Moving , 1: Idel, 0: else)
+
+ex) 
+
+#### 4by4 Matrix 
+Data=RobotInfo()
+
+print("Matrix")
+print("%.3f\t%.3f\t%.3f\t%.3f"%(Data.Mat[0],Data.Mat[1],Data.Mat[2],Data.Mat[3]))
+print("%.3f\t%.3f\t%.3f\t%.3f"%(Data.Mat[4],Data.Mat[5],Data.Mat[6],Data.Mat[7]))
+print("%.3f\t%.3f\t%.3f\t%.3f"%(Data.Mat[8],Data.Mat[9],Data.Mat[10],Data.Mat[11]))
+print("%.3f\t%.3f\t%.3f\t%.3f"%(Data.Mat[12],Data.Mat[13],Data.Mat[14],Data.Mat[15]))
+        
+
+print("Joint")
+print("%.3f\t%.3f\t%.3f\t%.3f\t%.3f\t%.3f"%(Data.Jnt[0],Data.Jnt[1],Data.Jnt[2],Data.Jnt[3],Data.Jnt[4],Data.Jnt[5]))
+
+print("State")
+print("%.3f"%(Data.state))
+
+```
+
+#### SetTCP(TCPOffset)
+```
+TCPOffset : TCP offset position & rotation (4by4 matrix)
+ex)
+TCPOffset = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0.01, 0, 0, 0, 1]
+```
 
 #### movej(q)
 ```
@@ -126,31 +160,9 @@ moveb(base,0.05, 3, pose1, pose2, pose3)
 Robot stop immediately
 ```
 
-#### [Jnt[6],Mat[16],State]=RobotInfo()
-```
-Jnt : joint position
-Mat : Robot Position 4 by 4 matrix
-State : Robot state(2:Moving , 1: Idel, 0: else)
-
-ex) 
-
-#### 4by4 Matrix 
- Data=RobotInfo()
-
-print(Data.Mat[0],Data.Mat[1],Data.Mat[2],Data.Mat[3])
-print(Data.Mat[4],Data.Mat[5],Data.Mat[6],Data.Mat[7])
-print(Data.Mat[8],Data.Mat[9],Data.Mat[10],Data.Mat[11])
-print(Data.Mat[12],Data.Mat[13],Data.Mat[14],Data.Mat[15])
 
 
-```
 
-#### SetTCP(TCPOffset)
-```
-TCPOffset : TCP offset position & rotation (4by4 matrix)
-ex)
-TCPOffset = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0.01, 0, 0, 0, 1]
-```
 
 #### SetVelocity(v)
 ```

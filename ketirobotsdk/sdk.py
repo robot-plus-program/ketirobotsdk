@@ -11,7 +11,7 @@ Indy7   =4
 
 Base=0
 TCP=1
-file_path= f'{os.getcwd()}/ketirobotsdk/librobotsdk.so'
+file_path= f'{os.getcwd()}/ketirobotsdk/librobotsdkv2.so'
 
 module=ctypes.cdll.LoadLibrary(file_path)
 connect_state=0
@@ -19,7 +19,7 @@ connect_state=0
 
 
 class RxDataInfo(ctypes.Structure):
-    _fields_=[("Jnt",ctypes.c_double*6),
+    _fields_=[("Jnt",ctypes.c_double*7),
              ("Mat",ctypes.c_double*16),
              ("State",ctypes.c_double)]
     
@@ -31,9 +31,13 @@ class TCPoff(ctypes.Structure):
               ('rot2',ctypes.c_double),
               ('rot3',ctypes.c_double)]      
 
+class DIInput(ctypes.Structure):
+    _fields_=[('DI',ctypes.c_bool*16)]      
+
 
 def RobotInfo():
     module.RobotInfo.restype=RxDataInfo
+
     return module.RobotInfo()
 
 # def SetTCP(args):
@@ -62,11 +66,11 @@ def movej(args):
 
 def moveb(*args):
     err=0
-    args_arr=[args[0],args[1],len(args)-2]
+    args_arr=[args[0],args[1],len(args)-3]
     module.moveb.argtypes=[ctypes.c_double,ctypes.c_double,ctypes.c_double]
     print(len(args))
     
-    for i in range(2,len(args)):
+    for i in range(3,len(args)):
         print(i,len(args[i]))
         if(len(args[i])==16) :
             args_arr.append((ctypes.c_double*len(args[i]))(*args[i]))
@@ -85,8 +89,8 @@ def moveb(*args):
 def SetRobotConf(*args):
     args_arr=[args[0],args[1].encode('utf-8'),args[2]]
     print(args[0])
-    module.RobotChange.argtypes=[ctypes.c_int,ctypes.c_char_p,ctypes.c_int]
-    module.RobotChange(*args_arr)
+    module.SetRobotConf.argtypes=[ctypes.c_int,ctypes.c_char_p,ctypes.c_int]
+    module.SetRobotConf(*args_arr)
     
 def RobotConnect():
     module.RobotConnect()
@@ -103,3 +107,11 @@ def Stop():
     module.Stop()
     
 
+def ControlBoxDigitalOut(args):
+    module.ControlBoxDigitalOut.argtypes=[ctypes.c_int]
+    module.ControlBoxDigitalOut(args)
+    
+def ControlBoxDigitalIn():
+    module.ControlBoxDigitalIn.restype=DIInput
+    return module.ControlBoxDigitalIn()
+   
