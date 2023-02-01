@@ -164,17 +164,14 @@ pose3= [0, 1, 0 0.3, 0, 0, 1, 0.3, 1, 0, 0, 0.25, 0, 0, 0, 1]
 moveb(base,0.05, 3, pose1, pose2, pose3)
 ```
 
-#### movec(type, r, nPnt, Pose1, Pose2, ... , Pose5)
+#### movec(type, Pose1, Pose2)
 ```
 type : Reference Coordinate , (Base or TCP)
-r : Blend Radius [m]
-nPnt : number of via point
 Pose(n) : target position & rotation, (4by4 matrix)
 ex)
 pose1= [0, 1, 0 0.3, 0, 0, 1, 0.2, 1, 0, 0, 0.25, 0, 0, 0, 1]
 pose2= [0, 1, 0 0.2, 0, 0, 1, 0.3, 1, 0, 0, 0.25, 0, 0, 0, 1]
-pose3= [0, 1, 0 0.3, 0, 0, 1, 0.3, 1, 0, 0, 0.25, 0, 0, 0, 1]
-moveb(base,0.05, 3, pose1, pose2, pose3)
+moveb(base,0.05, pose1, pose2)
 ```
 
 #### Stop()
@@ -182,11 +179,21 @@ moveb(base,0.05, 3, pose1, pose2, pose3)
 Robot stop immediately
 ```
 
-#### Stop()
+#### ControlBoxDigitalOut(PortNum)
 ```
-Robot stop immediately
-```
+PortNum : The Number of output with Bit Control. 0 is False,1 is True
 
+ex) OutputPort 0,2 Set True
+ControlBoxDigitalOut(5)
+
+```
+#### PortNum=ControlBoxDigitalin()
+```
+PortNum : The Number of Input with Bit Control.
+
+ex) If Input Port is 14, InputPort 1,2,3 is True
+ Input=ControlBoxDigitalIn()
+```
 
 
 

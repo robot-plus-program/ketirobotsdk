@@ -88,7 +88,6 @@ def moveb(*args):
     
 def SetRobotConf(*args):
     args_arr=[args[0],args[1].encode('utf-8'),args[2]]
-    print(args[0])
     module.SetRobotConf.argtypes=[ctypes.c_int,ctypes.c_char_p,ctypes.c_int]
     module.SetRobotConf(*args_arr)
     
@@ -112,6 +111,7 @@ def ControlBoxDigitalOut(args):
     module.ControlBoxDigitalOut(args)
     
 def ControlBoxDigitalIn():
-    module.ControlBoxDigitalIn.restype=DIInput
+    # module.ControlBoxDigitalIn.restype=DIInput
+    module.ControlBoxDigitalIn.restype=ctypes.c_double
     return module.ControlBoxDigitalIn()
    

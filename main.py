@@ -31,15 +31,14 @@ if __name__=='__main__':
     #sub.start()
     #################
     
-    #SetRobotConf(M1013,'192.168.47.7',1013)
     SetRobotConf(RB10,'192.168.47.7',1024)
     RobotConnect()
     while(1):    
     #   SetVelocity(50)
       # movel(0,Pose1)
       ControlBoxDigitalOut(65535)
-      input=ControlBoxDigitalInput()
-      print("%.3f"%(input.DI[0]))
+      input=ControlBoxDigitalIn()
+      print("%.3f"%(input))
       sleep(2)
       movel(0,Pose1)
       sleep(2)
