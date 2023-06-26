@@ -19,7 +19,7 @@ git clone https://github.com/robot-plus-program/ketirobotsdk.git
 ### 2. How to use
 ``` python
 사용하려는 *.py 파일과 같은 경로에 패키지( ketirobotsdk 폴더) 설치
-from ketirobotsdk.sd  import * 를 추가하여 제공되는 명령어를 사용
+from ketirobotsdk.sdk  import * 를 추가하여 제공되는 명령어를 사용
 ```
 
 ### 3. Example
