@@ -63,32 +63,33 @@ public:
      TCPCmd Cmd;
      bool writeinfo=false;
      long recvByteLen;
+     long sendByteLen;
+     long byteLen;
+     unsigned int curLen;
+     int SockFD;
+     char *ptrRecvBufIndx = nullptr;
+     char buf[MAXRECEIVEBUFSIZE] = {0,};
+     char bufWait[MAXWAITBUFSIZE] = {0,};
+
+     int dataLen = 0;
+
+     int ret=-1;
+     pthread_t comm_rx_thread;
+
+     sockaddr_in server_addr;
+
+     uint16_t port;
+     string ip;
+
+ //    TCPCmd Cmd;
+
+     bool server_connected=false;
+
+     void Connect();
 private:
-    long sendByteLen;
-    long byteLen;
-    unsigned int curLen;
-    int SockFD;
-    char *ptrRecvBufIndx = nullptr;
-    char buf[MAXRECEIVEBUFSIZE] = {0,};
-    char bufWait[MAXWAITBUFSIZE] = {0,};
 
-    int dataLen = 0;
-
-    int ret=-1;
-    pthread_t comm_rx_thread;
-
-    sockaddr_in server_addr;
-
-    uint16_t port;
-    string ip;
-
-//    TCPCmd Cmd;
-
-    bool server_connected=false;
-
-    void Connect();
 protected:
-
+    void read();
     void Write();
     static void* run(void* arg);
 };

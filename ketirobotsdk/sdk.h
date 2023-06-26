@@ -18,8 +18,9 @@
 #define M1013   3
 #define Indy7   4
 
-//#define base 0
+#define base 0
 #define tcp 1
+
 //robot *Rot = new rb10;
 //robot *Rot;
 //string DataSockip;
@@ -66,6 +67,7 @@ extern "C" {
     void ControlBoxDigitalOut(int out);
 //    DIInput ControlBoxDigitalInput();
     int ControlBoxDigitalIn();
+    bool IsConnected();
 }
 
 #endif // SDK_H

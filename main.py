@@ -49,21 +49,21 @@ if __name__=='__main__':
     SetVelocity(80)
 
     print("MoveJ")
-    MoveJ(Jnt1)
+    movej(Jnt1)
     sleep(5)
     
     SetVelocity(30)
     
     print("MoveL")
-    MoveL(Base,Pose1)
+    movel(Base,Pose1)
     sleep(5)
     
     print("MoveB")
-    MoveB(Base,0.05,2,Pose2,Pose3)
+    moveb(Base,0.05,2,Pose2,Pose3)
     sleep(10)
     
     # print("MoveC")
-    # MoveC(Base,Pose4,Pose5)
+    # movec(Base,Pose4,Pose5)
     # sleep(10)
 
     RobotDisconnect()
