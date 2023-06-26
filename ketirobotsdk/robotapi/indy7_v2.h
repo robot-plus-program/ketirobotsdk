@@ -2,7 +2,7 @@
 #define indy7_H
 
 //#include "qstring.h"
-#include "../libcustom/tcpclient.h"
+#include "../libcustom/tcpclient2.h"
 
 #include <iostream>
 #include "../robotconf.h"

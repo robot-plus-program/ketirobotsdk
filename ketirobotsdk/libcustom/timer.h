@@ -1,7 +1,7 @@
 #ifndef THREADTEST_H
 #define THREADTEST_H
 
-#include "tcpclient.h"
+#include "tcpclient2.h"
 
 #include <chrono>
 #include <iostream>

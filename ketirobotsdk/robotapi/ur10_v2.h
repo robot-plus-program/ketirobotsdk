@@ -4,7 +4,7 @@
 //#include "qstring.h"r
 
 #include "../robotconf.h"
-#include "../libcustom/tcpclient.h"
+#include "../libcustom/tcpclient2.h"
 #include "robot.h"
 
 #include <stdio.h>
