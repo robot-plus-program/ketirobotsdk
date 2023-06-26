@@ -44,7 +44,7 @@ def RobotInfo():
    
 #     module.SetTCPCord(TCP(args[0],args[1],args[2],args[3],args[4],args[5]))
 
-def movel(*args):
+def MoveL(*args):
     module.movel.argtypes=[ctypes.c_double,ctypes.POINTER(ctypes.c_double)]
     if len(args[1])!=16: 
         print("input arguments must 16")
@@ -55,7 +55,7 @@ def movel(*args):
     module.movel(*arg_arr)
     
     
-def movej(args):
+def MoveJ(args):
     module.movej.argtypes=[ctypes.POINTER(ctypes.c_double)]
     if len(args)!=6: 
         print("input arguments must 6")
@@ -64,14 +64,14 @@ def movej(args):
     module.movej(arg_arr)
                  
 
-def moveb(*args):
+def MoveB(*args):
     err=0
     args_arr=[args[0],args[1],len(args)-3]
     module.moveb.argtypes=[ctypes.c_double,ctypes.c_double,ctypes.c_double]
-    print(len(args))
+    
     
     for i in range(3,len(args)):
-        print(i,len(args[i]))
+    
         if(len(args[i])==16) :
             args_arr.append((ctypes.c_double*len(args[i]))(*args[i]))
             module.moveb.argtypes.append(ctypes.POINTER(ctypes.c_double))
@@ -85,6 +85,27 @@ def moveb(*args):
     else : 
         module.moveb(*args_arr)
     
+
+def MoveC(*args):
+    err=0
+    args_arr=[args[0]]
+    module.movec.argtypes=[ctypes.c_double]
+    
+    
+    for i in range(1,3):
+        if(len(args[i])==16) :
+            args_arr.append((ctypes.c_double*len(args[i]))(*args[i]))
+            module.movec.argtypes.append(ctypes.POINTER(ctypes.c_double))
+           
+        else:
+            err=i 
+            break
+        
+    if err!=0 :
+        print('CMD Input',err,'Length Not match')
+    else : 
+        module.movec(*args_arr)
+        
     
 def SetRobotConf(*args):
     args_arr=[args[0],args[1].encode('utf-8'),args[2]]
@@ -114,4 +135,7 @@ def ControlBoxDigitalIn():
     # module.ControlBoxDigitalIn.restype=DIInput
     module.ControlBoxDigitalIn.restype=ctypes.c_double
     return module.ControlBoxDigitalIn()
-   
+
+def IsConnected():
+    module.IsConnected.restype=ctypes.c_bool    
+    return module.IsConnected()

@@ -1,11 +1,21 @@
+from cmath import pi
 from ketirobotsdk.sdk import *
 from time import *
 import threading
 
-Pose1=[-0.707,0,0,0.85,0,0.707,0,0.245,0,0,-1,0.7,0,0,0,1]
-Pose2=[1,0,0,-0.56,0,0,1,0.15,0,-1,0,0.60,0,0,0,1]
+# Pose1=[0,0,-1,-0.500,-1,0,0,0.158,0,1,0,0.334,0,0,0,1]
+# Pose2=[0,0,-1,-0.500,-1,0,0,0.316,0,1,0,0.492,0,0,0,1]
+# Pose3=[0,0,-1,-0.500,-1,0,0,0.158,0,1,0,0.630,0,0,0,1]
+# Pose4=[0,0,-1,-0.500,-1,0,0,0.000,0,1,0,0.492,0,0,0,1]
+# Pose5=[0,0,-1,-0.500,-1,0,0,0.158,0,1,0,0.334,0,0,0,1]
+# Jnt1=[-pi,-24*pi/180,pi/2+24*pi/180,0,pi/2,0]
 
-jnt1=[1,2,3,4,5,6]
+Pose1=[0,1,0,-0.691,1,0,0,-0.176,0,0,-1,0.403,0,0,0,1]
+Pose2=[0,1,0,-0.691,1,0,0,0.000,0,0,-1,0.579,0,0,0,1]
+Pose3=[0,1,0,-0.691,1,0,0,-0.176,0,0,-1,0.745,0,0,0,1]
+Pose4=[0,1,0,-0.691,1,0,0,-0.352,0,0,-1,0.579,0,0,0,1]
+Pose5=[0,1,0,-0.691,1,0,0,-0.176,0,0,-1,0.403,0,0,0,1]
+Jnt1=[0,-90*pi/180,90*pi/180,-90*pi/180,-90*pi/180,0]
 #### Thread example
 #### Get Robot Information 
 def thread():
@@ -27,31 +37,34 @@ sub=threading.Thread(target=thread)
 if __name__=='__main__':
    
      ##start Thread ##
-    #sub.daemon=True
-    #sub.start()
+    sub.daemon=True
+    sub.start()
     #################
     
-    SetRobotConf(RB10,'192.168.47.7',1024)
+    # SetRobotConf(RB10,'192.168.47.7',5000)
+    # RobotConnect()
+  
+    SetRobotConf(UR10,'192.168.0.7',30003)
     RobotConnect()
-    while(1):    
-    #   SetVelocity(50)
-      # movel(0,Pose1)
-      ControlBoxDigitalOut(65535)
-      input=ControlBoxDigitalIn()
-      print("%.3f"%(input))
-      sleep(2)
-      movel(0,Pose1)
-      sleep(2)
-      movej(jnt1)
-      sleep(2)
-    # SetVelocity(50)
-    # movel(Base,Pose2)
-    # sleep(2)
-   
+    SetVelocity(80)
 
-    # SetVelocity(20)
-    # movel(Base,Pose1)
-    # sleep(5)
+    print("MoveJ")
+    MoveJ(Jnt1)
+    sleep(5)
+    
+    SetVelocity(30)
+    
+    print("MoveL")
+    MoveL(Base,Pose1)
+    sleep(5)
+    
+    print("MoveB")
+    MoveB(Base,0.05,2,Pose2,Pose3)
+    sleep(10)
+    
+    # print("MoveC")
+    # MoveC(Base,Pose4,Pose5)
+    # sleep(10)
 
-    # RobotDisconnect()
+    RobotDisconnect()
    
