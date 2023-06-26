@@ -44,7 +44,7 @@ def RobotInfo():
    
 #     module.SetTCPCord(TCP(args[0],args[1],args[2],args[3],args[4],args[5]))
 
-def MoveL(*args):
+def movel(*args):
     module.movel.argtypes=[ctypes.c_double,ctypes.POINTER(ctypes.c_double)]
     if len(args[1])!=16: 
         print("input arguments must 16")
@@ -55,7 +55,7 @@ def MoveL(*args):
     module.movel(*arg_arr)
     
     
-def MoveJ(args):
+def movej(args):
     module.movej.argtypes=[ctypes.POINTER(ctypes.c_double)]
     if len(args)!=6: 
         print("input arguments must 6")
@@ -64,7 +64,7 @@ def MoveJ(args):
     module.movej(arg_arr)
                  
 
-def MoveB(*args):
+def moveb(*args):
     err=0
     args_arr=[args[0],args[1],len(args)-3]
     module.moveb.argtypes=[ctypes.c_double,ctypes.c_double,ctypes.c_double]
@@ -86,7 +86,7 @@ def MoveB(*args):
         module.moveb(*args_arr)
     
 
-def MoveC(*args):
+def movec(*args):
     err=0
     args_arr=[args[0]]
     module.movec.argtypes=[ctypes.c_double]
