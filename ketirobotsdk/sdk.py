@@ -14,7 +14,7 @@ TCP=1
 
 module=None
 file_path= f'{os.getcwd()}/ketirobotsdk/librobotsdkv2.so'
-if os.pths.isfile(file_path) is True :
+if os.path.isfile(file_path) is True :
     module=ctypes.cdll.LoadLibrary(file_path)
 
 def setLibPath(path):
