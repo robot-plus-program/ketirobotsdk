@@ -11,9 +11,16 @@ Indy7   =4
 
 Base=0
 TCP=1
-file_path= f'{os.getcwd()}/ketirobotsdk/librobotsdkv2.so'
 
-module=ctypes.cdll.LoadLibrary(file_path)
+module=None
+file_path= f'{os.getcwd()}/ketirobotsdk/librobotsdkv2.so'
+if os.pths.isfile(file_path) is True :
+    module=ctypes.cdll.LoadLibrary(file_path)
+
+def setLibPath(path):
+    global module
+    module=ctypes.cdll.LoadLibrary(path)
+
 connect_state=0
 
 
