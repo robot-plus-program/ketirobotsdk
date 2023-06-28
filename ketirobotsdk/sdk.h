@@ -18,8 +18,8 @@
 #define M1013   3
 #define Indy7   4
 
-#define base 0
-#define tcp 1
+const bool base=0;
+const bool tcp=1;
 
 //robot *Rot = new rb10;
 //robot *Rot;
