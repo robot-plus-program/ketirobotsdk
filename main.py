@@ -10,8 +10,8 @@ import threading
 # Pose5=[0,0,-1,-0.500,-1,0,0,0.158,0,1,0,0.334,0,0,0,1]
 # Jnt1=[-pi,-24*pi/180,pi/2+24*pi/180,0,pi/2,0]
 
-Pose1=[0,1,0,-0.691,1,0,0,-0.176,0,0,-1,0.403,0,0,0,1]
-Pose2=[0,1,0,-0.691,1,0,0,0.000,0,0,-1,0.579,0,0,0,1]
+Pose1=[-1,0,0,-0.394,0,0,1,-0.688,0,1,0,0.510546,0,0,0,1]
+Pose2=[-1,0,0,-0.394,0,0,1,-0.688,0,1,0,0.330724,0,0,0,1]
 Pose3=[0,1,0,-0.691,1,0,0,-0.176,0,0,-1,0.745,0,0,0,1]
 Pose4=[0,1,0,-0.691,1,0,0,-0.352,0,0,-1,0.579,0,0,0,1]
 Pose5=[0,1,0,-0.691,1,0,0,-0.176,0,0,-1,0.403,0,0,0,1]
@@ -44,22 +44,25 @@ if __name__=='__main__':
     # SetRobotConf(RB10,'192.168.47.7',5000)
     # RobotConnect()
   
-    SetRobotConf(UR10,'192.168.0.7',30003)
+  
+    SetRobotConf(RB10,'192.168.0.7',5000)
     RobotConnect()
     SetVelocity(80)
 
-    print("MoveJ")
-    movej(Jnt1)
-    sleep(5)
+    # while(True):
+    #     sleep(1)
+    # print("MoveJ")
+    # movej(Jnt1)
+    # sleep(5)
     
-    SetVelocity(30)
+    # SetVelocity(30)
     
-    print("MoveL")
-    movel(Base,Pose1)
-    sleep(5)
+    # print("MoveL")
+    # movel(Base,Pose1)
+    # sleep(5)
     
     print("MoveB")
-    moveb(Base,0.05,2,Pose2,Pose3)
+    moveb(Base,0.05,2,Pose1,Pose2)
     sleep(10)
     
     # print("MoveC")
