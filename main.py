@@ -49,25 +49,23 @@ if __name__=='__main__':
     RobotConnect()
     SetVelocity(80)
 
-    # while(True):
-    #     sleep(1)
-    # print("MoveJ")
-    # movej(Jnt1)
-    # sleep(5)
+    print("MoveJ")
+    movej(Jnt1)
+    sleep(5)
     
-    # SetVelocity(30)
+    SetVelocity(30)
     
-    # print("MoveL")
-    # movel(Base,Pose1)
-    # sleep(5)
+    print("MoveL")
+    movel(Base,Pose1)
+    sleep(5)
     
     print("MoveB")
     moveb(Base,0.05,2,Pose1,Pose2)
     sleep(10)
     
-    # print("MoveC")
-    # movec(Base,Pose4,Pose5)
-    # sleep(10)
+    print("MoveC")
+    movec(Base,Pose4,Pose5)
+    sleep(10)
 
     RobotDisconnect()
    

@@ -120,8 +120,9 @@ def SetRobotConf(*args):
     module.SetRobotConf(*args_arr)
     
 def RobotConnect():
-    module.RobotConnect()
-    
+    # module.RobotConnect()
+    module.RobotConnect.restype=ctypes.c_bool
+    return module.RobotConnect()
     
 def RobotDisconnect():
     module.RobotDisconnect()
