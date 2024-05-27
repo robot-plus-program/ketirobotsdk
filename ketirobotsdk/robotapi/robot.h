@@ -16,10 +16,14 @@ class robot
 {
 public:
 
+    int test_value=0;
+    int robot_num=0;
+
     robot();
      ~robot();
     virtual void InitSocket(TCPClient *sock1,TCPClient *sock2,ReciveData *Info,int cord_type);
     virtual void MoveL(WayPoints *data);
+    virtual void MoveJ(WayPoints *data, double acc);
     virtual void MoveJ(WayPoints *data);
     virtual void MoveB(WayPoints *data);
     virtual void MoveC(WayPoints *data);
@@ -31,6 +35,7 @@ public:
 
     virtual void RobotInfo();
     virtual void settcp(bool on);
+    virtual bool IsConnected();
 //    virtual void SetTCP();
 
 
@@ -39,6 +44,8 @@ public:
     virtual array<bool,8> ControlBoxDigitalInput(void);
 //    virtual vector<bool> ControlBoxDigitalIn(void);
     virtual int ControlBoxDigitalIn(void);
+    void testf(int i);
+    void check();
     TCPClient *CMDSocket;
 private:
 

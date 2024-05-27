@@ -96,9 +96,17 @@ public:
     void InitSocket(TCPClient *sock1,TCPClient *sock2,ReciveData *Info,int cord_type);
     void InitSocket(TCPClient *sock,ReciveData *Info,int cord_type);
     void MoveL(WayPoints *data);
+    void MoveJ(WayPoints *data, double acc=-1);
     void MoveJ(WayPoints *data);
     void MoveB(WayPoints *data);
 
+    //void Stop();
+    //void SetVelocity(double v);
+   // void CobotInit();
+ //   bool WaitMove();
+
+    void ControlBoxDigitalOut(int out);
+    //array<bool,8> ControlBoxDigitalInput(void);
     void RobotInfo();
 
 

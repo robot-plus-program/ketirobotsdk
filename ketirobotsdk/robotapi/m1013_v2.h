@@ -25,6 +25,7 @@ public:
 
     void InitSocket(TCPClient *sock1,TCPClient *sock2,ReciveData *Info,int cord_type);
     void MoveL(WayPoints *data);
+    void MoveJ(WayPoints *data, double acc=-1);
     void MoveJ(WayPoints *data);
     void MoveB(WayPoints *data);
     void MoveC(WayPoints *data);

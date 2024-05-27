@@ -123,7 +123,7 @@ class ur10: public robot
     bool movestate=0;
     char blendMsg[1024];
     int blendMsgSize=0;
-    double vel=0.25;
+
 
     ReciveData *RecvData={};
 
@@ -132,11 +132,13 @@ public:
     ur10();
     ~ur10();
 
+    double vel_l=1,vel_j;
     cord TCPcord={};
     void InitSocket(TCPClient *sock1,TCPClient *sock2,ReciveData *Info,int cord_type);
     void RobotInfo();
     void MoveL(WayPoints *data);
     void MoveJ(WayPoints *data);
+    void MoveJ(WayPoints *data,double acc=-1);
     void MoveB(WayPoints *data);
     void MoveC(WayPoints *data);
     void SetVelocity(double v);
@@ -149,9 +151,9 @@ public:
     bool WaitMove();
 
     //acc[m/s^2],vel[m/s]
-    void movel(float x, float y, float z, float rx, float ry, float rz,float vel=0.25, float acc=1.2, float time=0);
+    void movel(float x, float y, float z, float rx, float ry, float rz,float vel=0.25, float acc=10, float time=0);
      //acc[rad/s^2],vel[rad/s]
-    void movej(float j1, float j2, float j3, float j4, float j5, float j6,float vel=0.25,float acc=1.2, float time=0);
+    void movej(float j1, float j2, float j3, float j4, float j5, float j6,float vel=2,float acc=30, float time=0);
     void moveb(WayPoints *data);
 
     void moveb_clear(void);

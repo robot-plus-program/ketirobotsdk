@@ -1,4 +1,4 @@
-#ifndef SDK_H
+/*#ifndef SDK_H
 #define SDK_H
 
 #include "robotapi/rb10_v2.h"
@@ -70,5 +70,5 @@ extern "C" {
     bool IsConnected();
 }
 
-#endif // SDK_H
+#endif // SDK_H*/
 

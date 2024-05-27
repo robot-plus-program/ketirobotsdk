@@ -199,17 +199,20 @@ class rb10 : public robot
     RConf Conf;
 
     int RecvSkipCnt=0;
-    double vel_l=1000,vel_j=180;
+
 
 public:
     rb10();
     ~rb10();
 
+    double vel_l=1000,vel_j=50;
+    double acc_j=0.5;
     bool movestate=0;
     void InitSocket(TCPClient *sock1,TCPClient *sock2,ReciveData *Info,int cord_type);
 //    void InitSocket(TCPClient *sock1,TCPClient *sock2);
     void MoveL(WayPoints *data);
     void MoveJ(WayPoints *data);
+    void MoveJ(WayPoints *data, double acc=-1);
     void MoveB(WayPoints *data);
     void MoveC(WayPoints *data);
     void move_c_points(double x1,double y1,double z1,
@@ -232,6 +235,7 @@ public:
 
 //    vector<bool> ControlBoxDigitalIn();
     int ControlBoxDigitalIn();
+    bool IsConnected();
 private :
 
 
@@ -242,6 +246,8 @@ private :
     void MoveTCPBlend_Clear();
     void MoveTCPBlend_AddPoint(float radius, float x, float y, float z, float rx, float ry, float rz, float spd = 250, float acc = 1200);
     void MoveTCPBlend_MovePoint();
+
+
 };
 
 

@@ -53,14 +53,14 @@ typedef struct
     double RobotState;
 } ReciveData;
 
-extern int rottype;
+
 
 class RConf
 {
 public:
     RConf() ;
 
-//    int rot_type=rpy_deg;
+    int rottype;
 
     void InverseRot(double *R,double *rx,double *ry,double *rz);
     void Angle2Rot(double A,double B, double C);
