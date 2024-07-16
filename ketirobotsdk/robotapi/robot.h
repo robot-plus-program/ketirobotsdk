@@ -33,9 +33,14 @@ public:
     virtual void CobotInit();
     virtual bool WaitMove();
 
+    virtual bool RobotConnect(std::string ip, int port, ReciveData *Info);
+    virtual void RobotDisconnect();
+
     virtual void RobotInfo();
     virtual void settcp(bool on);
     virtual bool IsConnected();
+    virtual void Pause();
+    virtual void Resume();
 //    virtual void SetTCP();
 
 
@@ -44,6 +49,7 @@ public:
     virtual array<bool,8> ControlBoxDigitalInput(void);
 //    virtual vector<bool> ControlBoxDigitalIn(void);
     virtual int ControlBoxDigitalIn(void);
+    virtual void set_speed_acc_j(double v,double a);
     void testf(int i);
     void check();
     TCPClient *CMDSocket;

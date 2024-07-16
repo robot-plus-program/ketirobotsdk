@@ -51,6 +51,7 @@ typedef struct
     double Jnt[6];
     double TCPpos[6];
     double RobotState;
+    double error;
 } ReciveData;
 
 

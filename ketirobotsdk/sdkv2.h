@@ -22,6 +22,7 @@ struct sdk_info{
     double jnt[7];
     double mat[16];
     double state;
+    double error;
 };
 
 
@@ -80,9 +81,12 @@ public:
     void ControlBoxDigitalOut(int out);
     int ControlBoxDigitalIn();
 
-    bool IsConnected();
+    int IsConnected();
     void WaitMove();
+    void set_speed_acc_j(double v,double a);
 
+    void Resume();
+    void Pause();
 };
 
 //sdk *sys;
@@ -106,9 +110,12 @@ extern "C"{
     void ControlBoxDigitalOut(int robot_id,int out);
     int ControlBoxDigitalIn(int robot_id);
 
-    bool IsConnected(int robot_id);
+    int IsConnected(int robot_id);
     void WaitMove(int robot_id);
+    void set_speed_acc_j(int robot_id,double v,double a);
 
+    void Pause(int robot_id);
+    void Resume(int robot_id);
 }
 
 #endif // SKD_H

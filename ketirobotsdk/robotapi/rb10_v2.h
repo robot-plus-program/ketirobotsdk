@@ -236,6 +236,11 @@ public:
 //    vector<bool> ControlBoxDigitalIn();
     int ControlBoxDigitalIn();
     bool IsConnected();
+
+    void Pause();
+    void Resume();
+
+    void set_speed_acc_j(double v, double a);
 private :
 
 
