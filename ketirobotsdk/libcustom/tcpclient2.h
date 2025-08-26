@@ -7,8 +7,6 @@
 #include <chrono>
 #include <thread>
 
-#include <unistd.h>
-#include <signal.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <cstring>

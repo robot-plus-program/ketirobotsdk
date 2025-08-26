@@ -13,16 +13,13 @@ Base=0
 TCP=1
 
 module=None
-file_path='ketirobotsdk/22.04/librobotsdk.so'
+file_path= f'{os.getcwd()}/ketirobotsdk/librobotsdk.so'
 if os.path.isfile(file_path) is True :
-    print(file_path)
     module=ctypes.cdll.LoadLibrary(file_path)
-    
     
 def setLibPath(path):
     global module
     module=ctypes.cdll.LoadLibrary(path)
-    print(file_path)
 
 
 connect_state=0
@@ -160,11 +157,7 @@ def check():
 
     module.check()
     
-def Pause():
-    module.Pause()
-    
-def Resume():
-    module.Resume()
+
 
 
 
@@ -267,44 +260,5 @@ class Robot:
 
     def IsConnected(self):
         module.IsConnected.argtypes=[ctypes.c_int]
-        module.IsConnected.restype=ctypes.c_bool
+        module.IsConnected.restype=ctypes.c_bool    
         return module.IsConnected(self.ID)
-    
-    def Pause(self):
-        module.Pause.argtypes=[ctypes.c_int]
-        module.Pause(self.ID)
-    
-    def Resume(self):
-        module.Resume.argtypes=[ctypes.c_int]
-        module.Resume(self.ID)
-        
-    def WaitMove(self):
-        module.WaitMove.argtypes=[ctypes.c_int]
-        module.WaitMove(self.ID)
-        
-    def RobotComplianceCtrlOn(self, stpx = 1500, stpy = 1500, stpz = 1500, strx = 200, stry = 200, strz = 200):
-        module.RobotComplianceCtrlOn.argtypes=[ctypes.c_int, ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double]
-        module.RobotComplianceCtrlOn(self.ID, stpx, stpy, stpz, strx, stry, strz)
-        
-    def RobotComplianceCtrlOff(self):
-        module.RobotComplianceCtrlOff.argtypes=[ctypes.c_int]
-        module.RobotComplianceCtrlOff(self.ID)
-
-    def RobotSetToolForce(self, fd, dir):
-        module.RobotSetToolForce.argtypes=[ctypes.c_int, ctypes.POINTER(ctypes.c_double), ctypes.POINTER(ctypes.c_uint8)]
-        arg_arrf = (ctypes.c_double*6)(*fd)
-        arg_arrd = (ctypes.c_uint8*6)(*dir)
-        module.RobotSetToolForce(self.ID, arg_arrf, arg_arrd)
-
-    def RobotReleaseForce(self):
-        module.RobotReleaseForce.argtypes=[ctypes.c_int]
-        module.RobotReleaseForce(self.ID)
-
-    def RobotGetToolForce(self, force=[0,0,0,0,0,0]):
-        module.RobotGetToolForce.argstype=[ctypes.c_int]
-        arg_arr=(ctypes.c_double*6)(*force)
-        module.RobotGetToolForce(self.ID, arg_arr)
-        force_values = list(arg_arr)
-        return force_values
-
-    

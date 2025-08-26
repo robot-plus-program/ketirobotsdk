@@ -15,7 +15,6 @@
 #include <chrono>
 #include <termios.h>
 #include <unistd.h>
-#include <algorithm>
 
 #include "doosanapi/include/DRFLEx.h"
 using namespace DRAFramework;
@@ -59,7 +58,6 @@ public:
     WayPoints pos={};
 	double vel_l=50, vel_j=120.0f;
     double acc_l=75,acc_j=180;
-    bool connected;
 
     void InitSocket(TCPClient *sock1,TCPClient *sock2,ReciveData *Info,int cord_type);
     void MoveL(WayPoints *data);
@@ -70,7 +68,6 @@ public:
     void RobotInfo();
 	bool RobotConnect(std::string ip, int port, ReciveData *Info);
 	void RobotDisconnect();
-    bool IsConnected(){return connected;}
 
     void Stop();
     void SetVelocity(double v);
@@ -81,13 +78,8 @@ public:
 	int ControlBoxDigitalIn(void);
     void set_speed_acc_j(double v,double a);
 
-	void RobotComplianceCtrlOn(double stpx = 1500, double stpy = 1500, double stpz = 1500, double strx = 200, double stry = 200, double strz = 200);
+	void RobotComplianceCtrlOn(float stpx = 3000, float stpy = 3000, float stpz = 3000, float strx = 200, float stry = 200, float strz = 200);
 	void RobotComplianceCtrlOff();
-
-    void RobotSetToolForce(double force[6], unsigned char dir[6]);
-    void RobotReleaseForce();
-    void RobotGetToolForce(double force[6]);
-
 };
 
 #endif // M1013_H
