@@ -133,7 +133,6 @@ public:
     ~ur10();
 
     double vel_l=1,vel_j;
-    double acc_l,acc_j;
     cord TCPcord={};
     void InitSocket(TCPClient *sock1,TCPClient *sock2,ReciveData *Info,int cord_type);
     void RobotInfo();

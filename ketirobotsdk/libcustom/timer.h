@@ -48,15 +48,15 @@ public:
     void start(int _interval);
 };
 
-// template <typename T,typename... Args>
+template <typename T,typename... Args>
 
-// void connect_member(T *inst, void (T::*func)(Args...) const) {
+void connect_member(T *inst, void (T::*func)(Args...) const) {
 
-//      [=](Args... args) {
-//         (inst->*func)(args...);
-//     };
+     [=](Args... args) {
+        (inst->*func)(args...);
+    };
 
-// }
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

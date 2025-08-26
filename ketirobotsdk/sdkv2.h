@@ -5,24 +5,18 @@
 #include "robotapi/indy7_v2.h"
 #include "robotapi/m1013_v3.h"
 #include "robotapi/ur10_v2.h"
-#include "robotapi/hyundai.h"
-#include "robotapi/cobotta.h"
-
 #include "robotapi/robot.h"
-
 
 #include "robotconf.h"
 #include "libcustom/tcpclient2.h"
 #include "libcustom/timer.h"
+#include "robotconf.h"
 
 #define TestDummy 0
 #define RB10    1
 #define UR10    2
 #define M1013   3
 #define Indy7   4
-#define Hyundai 5
-#define Cobotta 6
-
 
 struct sdk_info{
     double jnt[7];
@@ -39,7 +33,7 @@ class sdk
     int CurrentR, BeforeR=-1;
 
     double ChgMat[16];
-    robot *Robot;   
+    robot *Robot;
     string DataSockip;
     uint16_t DataSockport;
     string CMDSockip;
@@ -93,17 +87,6 @@ public:
 
     void Resume();
     void Pause();
-
-    void GripperGrip();
-    void GripperRelease();
-    void GripperWidth(double *width);
-
-    void RobotComplianceCtrlOn(double stpx = 1500, double stpy = 1500, double stpz = 1500, double strx = 200, double stry = 200, double strz = 200);
-	void RobotComplianceCtrlOff();
-
-    void RobotSetToolForce(double force[6], unsigned char dir[6]);
-    void RobotReleaseForce();
-    void RobotGetToolForce(double force[6]);
 };
 
 //sdk *sys;
@@ -133,17 +116,6 @@ extern "C"{
 
     void Pause(int robot_id);
     void Resume(int robot_id);
-
-    void GripperGrip(int robot_id);
-    void GripperRelease(int robot_id);
-    void GripperWidth(int robot_id, double* width);
-
-    void RobotComplianceCtrlOn(int robot_id, double stpx = 1500, double stpy = 1500, double stpz = 1500, double strx = 200, double stry = 200, double strz = 200);
-	void RobotComplianceCtrlOff(int robot_id);
-
-    void RobotSetToolForce(int robot_id, double force[6], unsigned char dir[6]);
-    void RobotReleaseForce(int robot_id);
-    void RobotGetToolForce(int robot_id, double force[6]);
 }
 
 #endif // SKD_H

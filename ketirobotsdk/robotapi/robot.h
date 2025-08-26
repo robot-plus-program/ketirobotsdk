@@ -43,18 +43,11 @@ public:
     virtual void Resume();
 //    virtual void SetTCP();
 
-	virtual void RobotComplianceCtrlOn(double stpx = 1500, double stpy = 1500, double stpz = 1500, double strx = 200, double stry = 200, double strz = 200);
-	virtual void RobotComplianceCtrlOff();
 
-    virtual void RobotSetToolForce(double force[6], unsigned char dir[6]);
-    virtual void RobotReleaseForce();
-    virtual void RobotGetToolForce(double force[6]);
-
-    virtual void GripperGrip();
-    virtual void GripperRelease();
-    virtual void GripperWidth(double *width);
 
     virtual void ControlBoxDigitalOut(int out);
+    virtual array<bool,8> ControlBoxDigitalInput(void);
+//    virtual vector<bool> ControlBoxDigitalIn(void);
     virtual int ControlBoxDigitalIn(void);
     virtual void set_speed_acc_j(double v,double a);
     void testf(int i);
