@@ -12,8 +12,8 @@ Jntt2=[1.002,-1.134,0.805,-1.244,-1.570,-0.570]
 
 
 testRobot=Robot()
-
-testRobot.SetRobotConf(M1013,"192.168.137.100",12345)    
+setLibPath("ketirobotsdk/librobotsdk.so")
+testRobot.SetRobotConf(M1013,"192.168.137.50",12345)    
 def thread():
     while(1):
         Data=testRobot.RobotInfo()
