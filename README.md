@@ -197,6 +197,29 @@ ex) If Input Port is 14, InputPort 1,2,3 is True
  Input=ControlBoxDigitalIn()
 ```
 
+### 힘 제어(Force control) & 순응 제어(Compliance Control)
+```
+힘 제어를 사용하는 경우 순응 제어와 함께 사용해야 함
+RobotComplianceCtrlOn() -> RobotSetTollForce(fd, dir)
+ -> move linear command -> RobotReleaseForce() -> RobotComplianceCtrlOff()
 
+힘제어를 사용하지 않고 순응제어만 사용 할 경우
+RobotComplianceCtrlOn() -> move linear command -> RobotComplianceCtrlOff
+
+힘 제어 및 순응 제어는 반드시 carteisna space 내 움직임에 대해서만 적용해야 함.
+joint space 에서는 작동하지 않고 오류가 발생함
+
+ex)
+RobotComplianceCtrlOn()
+
+fd = [0, 0, -50, 0, 0, 10] # 힘 제어에 사용할 기준 힘 값 [px, py, pz, mx, my, mz]
+dir = [0, 0, 1, 0, 0, 1] # 힘 제어 적용 할 축 방향, 양의 방향만 가능
+RobotSetTollForce(fd, dir)
+
+movel(0, pose)
+
+RobotReleaseForce()
+RobotComplianceCtrlOff()
+```
 
 
