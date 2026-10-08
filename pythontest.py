@@ -5,6 +5,7 @@ from time import *
 import threading
 
 
+# 아래 pose/joint 값은 이전 로봇(M1013) 기준입니다. RB10에서는 실행 전 반드시 다시 티칭하세요.
 Poset1= [-1,   0,   0,  0, 0, 1, 0,  -0.4,0,  0,   -1,  0.350, 0,   0,   0,   1]
 Poset2= [-1,   0,   0,  -0.1, 0, 1, 0,  -0.4,0,  0,   -1,  0.350, 0,   0,   0,   1]
 Jntt1=[1.237,-1.201,0.904,-1.276,-1.570,-0.336]
@@ -13,7 +14,7 @@ Jntt2=[1.002,-1.134,0.805,-1.244,-1.570,-0.570]
 
 testRobot=Robot()
 setLibPath("ketirobotsdk/librobotsdk.so")
-testRobot.SetRobotConf(M1013,"192.168.137.50",12345)    
+testRobot.SetRobotConf(RB10,"192.168.137.50",5000)    
 def thread():
     while(1):
         Data=testRobot.RobotInfo()
